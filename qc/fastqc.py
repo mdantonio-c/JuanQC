@@ -51,15 +51,15 @@ class Fastqc(LogMain):
         """
         Check correct number of lines in log
 
-        - We expect 21 lines in the log
+         - We used to expect 21 lines in the log but in the more recent logs changed to 22 and then 23
         """
         if self.log_file_1:
-            if (len(self.log_file_1) != 21) & (len(self.log_file_1) != 22):
+            if (len(self.log_file_1) != 21) & (len(self.log_file_1) != 22) & (len(self.log_file_1) != 23):
                 raise Exception('check_lines: ' + self.sample + '_R1 does not have the correct number of lines \n' + 
                                 ' '.join(self.log_file_1[20:] if len(self.log_file_1) > 20 else self.log_file_1[-7:]))
 
         if self.log_file_2:
-            if (len(self.log_file_2) != 21) & (len(self.log_file_2) != 22):
+            if (len(self.log_file_2) != 21) & (len(self.log_file_2) != 22) & (len(self.log_file_2) != 23):
                 raise Exception('check_lines: ' + self.sample + '_R2 does not have the correct number of lines \n' + 
                                 ' '.join(self.log_file_2[20:] if len(self.log_file_2) > 20 else self.log_file_2[-7:]))
 
