@@ -67,15 +67,15 @@ class Fastqc(LogMain):
         """
         Check start and end statements are the expected ones
 
-        - ``Started analysis`` is the start log line
+        - ``Started analysis`` is the start log line (in some cases the first line is 'application/gzip' and 'Started analysis' is in the second line)
         - ``Analysis complete`` is the end log line
         """
         if self.log_file_1:
-            if (self.log_file_1[0][:16] != 'Started analysis') | (self.log_file_1[-1][:17] != 'Analysis complete'):
+            if not ((self.log_file_1[0][:16] != 'Started analysis' or self.log_file_1[1][:16] != 'Started analysis') and self.log_file_1[-1][:17] != 'Analysis complete'):
                 raise Exception('check_lines: ' + self.sample + '_R1 does not seem to have been processed properly')
 
         if self.log_file_2:
-            if (self.log_file_2[0][:16] != 'Started analysis') | (self.log_file_2[-1][:17] != 'Analysis complete'):
+            if not ((self.log_file_2[0][:16] != 'Started analysis' or self.log_file_2[1][:16] != 'Started analysis') and self.log_file_2[-1][:17] != 'Analysis complete'):
                 raise Exception('check_lines: ' + self.sample + '_R2 does not seem to have been processed properly')
 
     def check_folders(self):
