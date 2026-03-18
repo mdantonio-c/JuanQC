@@ -251,9 +251,10 @@ class Parent(LogMain):
         Method to check the length of the global flags section
 
         - The length should be 722
+        Note March 2026: with openjdk 8.0.472 and gatk4-4.3.0.0-0 seems that this number changed to 746
         """
-        if len(self.global_flags) != 722:
-            raise Exception('check_global_flags_length: ' + self.sample + ' does not have the expected number of rows')
+        if len(self.global_flags) not in (722, 746):
+            raise Exception('check_global_flags_length: ' + self.sample + 'does not have the expected number of rows. Counted rows are '+len(self.global_flags))
 
     def check_global_flags_variables(self):
         """
